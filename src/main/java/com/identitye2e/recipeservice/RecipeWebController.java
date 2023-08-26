@@ -102,11 +102,11 @@ public class RecipeWebController {
     @GetMapping("/recipeDetails")
     @ResponseBody
     public String displayRecipeDetails(@RequestParam Integer id) {
-        RecipeDetail recipeDetail = fetchRecipeDetails(id);
+        Root recipeDetail = fetchRecipeDetails(id);
         return renderRecipeDetailTemplate(recipeDetail);
     }
 
-    private RecipeDetail fetchRecipeDetails(Integer id) {
+    private Root fetchRecipeDetails(Integer id) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://tasty.p.rapidapi.com/recipes/get-more-info?id=" + id)
@@ -119,7 +119,7 @@ public class RecipeWebController {
             if (response.isSuccessful()) {
                 String responseBody = response.body().string();
                 ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.readValue(responseBody, RecipeDetail.class);
+                return objectMapper.readValue(responseBody, Root.class);
             } else {
                 throw new IOException("Failed to fetch data. Response code: " + response.code());
             }
@@ -129,12 +129,12 @@ public class RecipeWebController {
         }
     }
 
-
-    private String renderRecipeDetailTemplate(RecipeDetail recipeDetail) {
+    private String renderRecipeDetailTemplate(Root recipeDetail) {
         Jinjava jinjava = new Jinjava();
 
         Map<String, Object> context = new HashMap<>();
         context.put("recipe", recipeDetail);
+        System.out.println(recipeDetail.name);
 
         String template = "";
         try {
@@ -144,7 +144,9 @@ public class RecipeWebController {
             e.printStackTrace();
             return "Error occurred while reading template";
         }
-        System.out.println(jinjava.render(template, context));
+
+        System.out.println(recipeDetail);
+
         return jinjava.render(template, context);
     }
 
