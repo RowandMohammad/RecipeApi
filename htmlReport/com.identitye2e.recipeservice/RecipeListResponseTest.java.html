@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecipeListResponseTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.identitye2e.recipeservice</a> &gt; <span class="el_source">RecipeListResponseTest.java</span></div><h1>RecipeListResponseTest.java</h1><pre class="source lang-java linenums">package com.identitye2e.recipeservice;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+<span class="fc" id="L10">class RecipeListResponseTest {</span>
+
+    private RecipeListResponse recipeListResponse;
+
+    @BeforeEach
+    void setUp() {
+<span class="fc" id="L16">        recipeListResponse = new RecipeListResponse();</span>
+<span class="fc" id="L17">    }</span>
+
+    @Test
+    void testCount() {
+<span class="fc" id="L21">        int count = 5;</span>
+<span class="fc" id="L22">        recipeListResponse.setCount(count);</span>
+<span class="fc" id="L23">        assertEquals(count, recipeListResponse.getCount());</span>
+<span class="fc" id="L24">    }</span>
+
+    @Test
+    void testResults() {
+<span class="fc" id="L28">        List&lt;RecipeResult&gt; results = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L29">        results.add(new RecipeResult());</span>
+<span class="fc" id="L30">        recipeListResponse.setResults(results);</span>
+<span class="fc" id="L31">        assertEquals(results, recipeListResponse.getResults());</span>
+<span class="fc" id="L32">    }</span>
+
+    @Test
+    void testToString() {
+<span class="fc" id="L36">        int count = 5;</span>
+<span class="fc" id="L37">        recipeListResponse.setCount(count);</span>
+<span class="fc" id="L38">        assertTrue(recipeListResponse.toString().contains(&quot;Count: &quot; + count));</span>
+<span class="fc" id="L39">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

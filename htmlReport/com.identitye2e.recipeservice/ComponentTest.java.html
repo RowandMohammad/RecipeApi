@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ComponentTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.identitye2e.recipeservice</a> &gt; <span class="el_source">ComponentTest.java</span></div><h1>ComponentTest.java</h1><pre class="source lang-java linenums">package com.identitye2e.recipeservice;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+<span class="fc" id="L12">class ComponentTest {</span>
+
+    private Component component;
+
+    @BeforeEach
+    void setUp() {
+<span class="fc" id="L18">        component = new Component();</span>
+<span class="fc" id="L19">    }</span>
+
+    @Test
+    void testMeasurements() {
+<span class="fc" id="L23">        Measurement measurement1 = new Measurement();</span>
+<span class="fc" id="L24">        Measurement measurement2 = new Measurement();</span>
+<span class="fc" id="L25">        ArrayList&lt;Measurement&gt; measurements = new ArrayList&lt;&gt;(Arrays.asList(measurement1, measurement2));</span>
+
+<span class="fc" id="L27">        component.setMeasurements(measurements);</span>
+<span class="fc" id="L28">        assertEquals(2, component.getMeasurements().size());</span>
+<span class="fc" id="L29">        assertTrue(component.getMeasurements().contains(measurement1));</span>
+<span class="fc" id="L30">        assertTrue(component.getMeasurements().contains(measurement2));</span>
+<span class="fc" id="L31">    }</span>
+
+    @Test
+    void testIngredient() {
+<span class="fc" id="L35">        Ingredient ingredient = new Ingredient();</span>
+<span class="fc" id="L36">        component.setIngredient(ingredient);</span>
+<span class="fc" id="L37">        assertEquals(ingredient, component.getIngredient());</span>
+<span class="fc" id="L38">    }</span>
+
+    @Test
+    void testRawText() {
+<span class="fc" id="L42">        String rawText = &quot;2 cups of flour&quot;;</span>
+<span class="fc" id="L43">        component.setRawText(rawText);</span>
+<span class="fc" id="L44">        assertEquals(rawText, component.getRawText());</span>
+<span class="fc" id="L45">    }</span>
+
+    @Test
+    void testToString() {
+<span class="fc" id="L49">        Measurement measurement1 = new Measurement();</span>
+<span class="fc" id="L50">        Measurement measurement2 = new Measurement();</span>
+<span class="fc" id="L51">        ArrayList&lt;Measurement&gt; measurements = new ArrayList&lt;&gt;(Arrays.asList(measurement1, measurement2));</span>
+<span class="fc" id="L52">        Ingredient ingredient = new Ingredient();</span>
+<span class="fc" id="L53">        String rawText = &quot;2 cups of flour&quot;;</span>
+
+<span class="fc" id="L55">        component.setMeasurements(measurements);</span>
+<span class="fc" id="L56">        component.setIngredient(ingredient);</span>
+<span class="fc" id="L57">        component.setRawText(rawText);</span>
+
+<span class="fc" id="L59">        String expectedString = &quot;Component{&quot; +</span>
+                &quot;measurements=&quot; + measurements +
+                &quot;, ingredient=&quot; + ingredient +
+                &quot;, rawText='&quot; + rawText + '\'' +
+                '}';
+
+<span class="fc" id="L65">        assertEquals(expectedString, component.toString());</span>
+<span class="fc" id="L66">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

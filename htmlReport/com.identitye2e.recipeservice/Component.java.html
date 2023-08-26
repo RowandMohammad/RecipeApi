@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-<span class="nc" id="L9">public class Component {</span>
+<span class="fc" id="L9">public class Component {</span>
     @JsonProperty(&quot;measurements&quot;)
     public ArrayList&lt;Measurement&gt; measurements;
 
@@ -14,35 +14,35 @@ import java.util.ArrayList;
     public Ingredient ingredient;
 
     public ArrayList&lt;Measurement&gt; getMeasurements() {
-<span class="nc" id="L17">        return measurements;</span>
+<span class="fc" id="L17">        return measurements;</span>
     }
 
     public void setMeasurements(ArrayList&lt;Measurement&gt; measurements) {
-<span class="nc" id="L21">        this.measurements = measurements;</span>
-<span class="nc" id="L22">    }</span>
+<span class="fc" id="L21">        this.measurements = measurements;</span>
+<span class="fc" id="L22">    }</span>
 
     public Ingredient getIngredient() {
-<span class="nc" id="L25">        return ingredient;</span>
+<span class="fc" id="L25">        return ingredient;</span>
     }
 
     public void setIngredient(Ingredient ingredient) {
-<span class="nc" id="L29">        this.ingredient = ingredient;</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L29">        this.ingredient = ingredient;</span>
+<span class="fc" id="L30">    }</span>
 
     public String getRawText() {
-<span class="nc" id="L33">        return rawText;</span>
+<span class="fc" id="L33">        return rawText;</span>
     }
 
     public void setRawText(String rawText) {
-<span class="nc" id="L37">        this.rawText = rawText;</span>
-<span class="nc" id="L38">    }</span>
+<span class="fc" id="L37">        this.rawText = rawText;</span>
+<span class="fc" id="L38">    }</span>
 
     @JsonProperty(&quot;raw_text&quot;)
     public String rawText;
 
     @Override
     public String toString() {
-<span class="nc" id="L45">        return &quot;Component{&quot; +</span>
+<span class="fc" id="L45">        return &quot;Component{&quot; +</span>
                 &quot;measurements=&quot; + measurements +
                 &quot;, ingredient=&quot; + ingredient +
                 &quot;, rawText='&quot; + rawText + '\'' +
