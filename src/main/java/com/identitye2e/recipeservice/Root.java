@@ -3,7 +3,6 @@ package com.identitye2e.recipeservice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -49,7 +48,7 @@ public class Root {
         return sections;
     }
 
-    public void setSections(ArrayList<Section> sections) {
+    public void setSections(List<Section> sections) {
         this.sections = sections;
     }
 
@@ -57,7 +56,7 @@ public class Root {
         return instructions;
     }
 
-    public void setInstructions(ArrayList<Instruction> instructions) {
+    public void setInstructions(List<Instruction> instructions) {
         this.instructions = instructions;
     }
 

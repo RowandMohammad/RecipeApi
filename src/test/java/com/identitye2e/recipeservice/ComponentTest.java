@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +23,7 @@ class ComponentTest {
     void testMeasurements() {
         Measurement measurement1 = new Measurement();
         Measurement measurement2 = new Measurement();
-        ArrayList<Measurement> measurements = new ArrayList<>(Arrays.asList(measurement1, measurement2));
+        List<Measurement> measurements = new ArrayList<>(Arrays.asList(measurement1, measurement2));
 
         component.setMeasurements(measurements);
         assertEquals(2, component.getMeasurements().size());
@@ -48,7 +49,7 @@ class ComponentTest {
     void testToString() {
         Measurement measurement1 = new Measurement();
         Measurement measurement2 = new Measurement();
-        ArrayList<Measurement> measurements = new ArrayList<>(Arrays.asList(measurement1, measurement2));
+        List<Measurement> measurements = new ArrayList<>(Arrays.asList(measurement1, measurement2));
         Ingredient ingredient = new Ingredient();
         String rawText = "2 cups of flour";
 
