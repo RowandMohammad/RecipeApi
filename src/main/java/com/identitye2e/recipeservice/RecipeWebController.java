@@ -59,7 +59,7 @@ public class RecipeWebController {
         Request request = new Request.Builder()
                 .url("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=" + query)
                 .get()
-                .addHeader("X-RapidAPI-Key", "5d6b6ca9b0msh6f72ab9454d5861p17be82jsn10aa54bd2876")
+                .addHeader("X-RapidAPI-Key", System.getenv("X-RapidAPI-Key"))
                 .addHeader("X-RapidAPI-Host", "tasty.p.rapidapi.com")
                 .build();
 
@@ -111,7 +111,7 @@ public class RecipeWebController {
         Request request = new Request.Builder()
                 .url("https://tasty.p.rapidapi.com/recipes/get-more-info?id=" + id)
                 .get()
-                .addHeader("X-RapidAPI-Key", "5d6b6ca9b0msh6f72ab9454d5861p17be82jsn10aa54bd2876")
+                .addHeader("X-RapidAPI-Key", System.getenv("X-RapidAPI-Key"))
                 .addHeader("X-RapidAPI-Host", "tasty.p.rapidapi.com")
                 .build();
 
