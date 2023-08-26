@@ -3,19 +3,19 @@ package com.identitye2e.recipeservice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Section {
     @JsonProperty("components")
-    public ArrayList<Component> components;
+    public List<Component> components;
 
-    public ArrayList<Component> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(ArrayList<Component> components) {
+    public void setComponents(List<Component> components) {
         this.components = components;
     }
 
