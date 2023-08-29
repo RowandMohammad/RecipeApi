@@ -137,21 +137,22 @@ import java.util.Map;
     }
 
     private String renderRecipeDetailTemplate(Root recipeDetail) {
-<span class="nc" id="L140">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="nc" id="L142">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L143">        context.put(&quot;recipe&quot;, recipeDetail);</span>
+<span class="nc" id="L141">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="nc" id="L145">        String template = &quot;&quot;;</span>
+<span class="nc" id="L143">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L144">        context.put(&quot;recipe&quot;, recipeDetail);</span>
+
+<span class="nc" id="L146">        String template = &quot;&quot;;</span>
         try {
 
-<span class="nc" id="L148">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipeDetail.html&quot;)), StandardCharsets.UTF_8);</span>
-<span class="nc" id="L149">        } catch (IOException e) {</span>
-<span class="nc" id="L150">            LOGGER.error(ERROR_MSG, e);</span>
-<span class="nc" id="L151">            return ERROR_MSG;</span>
-<span class="nc" id="L152">        }</span>
+<span class="nc" id="L149">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipeDetail.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L150">        } catch (IOException e) {</span>
+<span class="nc" id="L151">            LOGGER.error(ERROR_MSG, e);</span>
+<span class="nc" id="L152">            return ERROR_MSG;</span>
+<span class="nc" id="L153">        }</span>
 
-<span class="nc" id="L154">        return jinjava.render(template, context);</span>
+<span class="nc" id="L155">        return jinjava.render(template, context);</span>
     }
 
 
