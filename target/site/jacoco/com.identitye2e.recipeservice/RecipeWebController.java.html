@@ -117,24 +117,24 @@ import java.util.Map;
     @GetMapping(&quot;/recipeDetails&quot;)
     @ResponseBody
     public String displayRecipeDetails(@RequestParam Integer id) {
-<span class="fc" id="L120">        Root recipeDetail = fetchRecipeDetails(id);</span>
-<span class="fc" id="L121">        return renderRecipeDetailTemplate(recipeDetail);</span>
+<span class="nc" id="L120">        Root recipeDetail = fetchRecipeDetails(id);</span>
+<span class="nc" id="L121">        return renderRecipeDetailTemplate(recipeDetail);</span>
     }
 
     private Root fetchRecipeDetails(Integer id) {
-<span class="fc" id="L125">        OkHttpClient client = new OkHttpClient();</span>
-<span class="fc" id="L126">        Request request = new Request.Builder()</span>
-<span class="fc" id="L127">                .url(&quot;https://tasty.p.rapidapi.com/recipes/get-more-info?id=&quot; + id)</span>
-<span class="fc" id="L128">                .get()</span>
-<span class="fc" id="L129">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X_RAPIDAPI_KEY&quot;))</span>
-<span class="fc" id="L130">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
-<span class="fc" id="L131">                .build();</span>
+<span class="nc" id="L125">        OkHttpClient client = new OkHttpClient();</span>
+<span class="nc" id="L126">        Request request = new Request.Builder()</span>
+<span class="nc" id="L127">                .url(&quot;https://tasty.p.rapidapi.com/recipes/get-more-info?id=&quot; + id)</span>
+<span class="nc" id="L128">                .get()</span>
+<span class="nc" id="L129">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X_RAPIDAPI_KEY&quot;))</span>
+<span class="nc" id="L130">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
+<span class="nc" id="L131">                .build();</span>
 
-<span class="fc" id="L133">        try (Response response = client.newCall(request).execute()) {</span>
-<span class="pc bpc" id="L134" title="1 of 2 branches missed.">            if (response.isSuccessful()) {</span>
-<span class="fc" id="L135">                String responseBody = response.body().string();</span>
-<span class="fc" id="L136">                ObjectMapper objectMapper = new ObjectMapper();</span>
-<span class="fc" id="L137">                return objectMapper.readValue(responseBody, Root.class);</span>
+<span class="nc" id="L133">        try (Response response = client.newCall(request).execute()) {</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (response.isSuccessful()) {</span>
+<span class="nc" id="L135">                String responseBody = response.body().string();</span>
+<span class="nc" id="L136">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="nc" id="L137">                return objectMapper.readValue(responseBody, Root.class);</span>
             } else {
 <span class="nc" id="L139">                throw new IOException(&quot;Failed to fetch data. Response code: &quot; + response.code());</span>
             }
@@ -146,21 +146,21 @@ import java.util.Map;
 
     private String renderRecipeDetailTemplate(Root recipeDetail) {
 
-<span class="fc" id="L149">        Jinjava jinjava = new Jinjava();</span>
+<span class="nc" id="L149">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="fc" id="L151">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L152">        context.put(&quot;recipe&quot;, recipeDetail);</span>
+<span class="nc" id="L151">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L152">        context.put(&quot;recipe&quot;, recipeDetail);</span>
 
-<span class="fc" id="L154">        String template = &quot;&quot;;</span>
+<span class="nc" id="L154">        String template = &quot;&quot;;</span>
         try {
 
-<span class="fc" id="L157">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipeDetail.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L157">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipeDetail.html&quot;)), StandardCharsets.UTF_8);</span>
 <span class="nc" id="L158">        } catch (IOException e) {</span>
 <span class="nc" id="L159">            LOGGER.error(ERROR_MSG, e);</span>
 <span class="nc" id="L160">            return ERROR_MSG;</span>
-<span class="fc" id="L161">        }</span>
+<span class="nc" id="L161">        }</span>
 
-<span class="fc" id="L163">        return jinjava.render(template, context);</span>
+<span class="nc" id="L163">        return jinjava.render(template, context);</span>
     }
 
 
