@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecipeServiceSteps.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">recipe-service</a> &gt; <a href="index.source.html" class="el_package">stepdefs</a> &gt; <span class="el_source">RecipeServiceSteps.java</span></div><h1>RecipeServiceSteps.java</h1><pre class="source lang-java linenums">package stepdefs;
+
+import com.identitye2e.recipeservice.RecipeResult;
+import com.identitye2e.recipeservice.RecipeWebController;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+<span class="nc" id="L11">public class RecipeServiceSteps {</span>
+
+<span class="nc" id="L13">    private RecipeWebController controller = new RecipeWebController();</span>
+    private String response;
+    private RecipeResult recipeDetail;
+
+    @Given(&quot;I make a request to display recipes with the query {string}&quot;)
+    public void iMakeARequestToDisplayRecipesWithTheQuery(String query) {
+<span class="nc" id="L19">        response = controller.displayRecipes(query);</span>
+<span class="nc" id="L20">        assertNotNull(response);</span>
+<span class="nc" id="L21">    }</span>
+
+    @Then(&quot;I should see a list of recipes related to {string}&quot;)
+    public void i_should_see_a_list_of_recipes_related_to(String expectedQuery) {
+        // This is a very basic check, you might want to parse the response and verify it more thoroughly
+<span class="nc" id="L26">        assertTrue(response.contains(expectedQuery));</span>
+<span class="nc" id="L27">    }</span>
+
+    @Given(&quot;I make a request for the details of recipe with id {int}&quot;)
+    public void i_make_a_request_for_the_details_of_recipe_with_id(Integer id) {
+<span class="nc" id="L31">        response = controller.displayRecipeDetails(id);</span>
+<span class="nc" id="L32">        assertNotNull(response);</span>
+<span class="nc" id="L33">    }</span>
+
+    @Then(&quot;I should see the details of the recipe&quot;)
+    public void i_should_see_the_details_of_the_recipe() {
+<span class="nc" id="L37">        assertTrue(&quot;Response does not contain recipe name&quot;, response.contains(&quot;&lt;h1 class=\&quot;title\&quot;&gt;&quot;));</span>
+<span class="nc" id="L38">        assertTrue(&quot;Response does not contain recipe description&quot;, response.contains(&quot;&lt;p class=\&quot;description\&quot;&gt;&quot;));</span>
+<span class="nc" id="L39">        assertTrue(&quot;Response does not contain thumbnail image&quot;, response.contains(&quot;&lt;img class=\&quot;recipe-image\&quot;&quot;));</span>
+<span class="nc" id="L40">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

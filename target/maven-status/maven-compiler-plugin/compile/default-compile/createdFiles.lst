@@ -1,3 +1,4 @@
+stepdefs\RecipeServiceSteps.class
 com\identitye2e\recipeservice\Measurement.class
 com\identitye2e\recipeservice\Component.class
 com\identitye2e\recipeservice\Instruction.class
@@ -8,5 +9,6 @@ com\identitye2e\recipeservice\Unit.class
 com\identitye2e\recipeservice\Root.class
 com\identitye2e\recipeservice\Section.class
 com\identitye2e\recipeservice\RecipeListResponse.class
+runners\CucumberRunner.class
 com\identitye2e\recipeservice\Ingredient.class
 com\identitye2e\recipeservice\RecipeWebController.class
