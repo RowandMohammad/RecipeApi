@@ -27,7 +27,7 @@ import java.util.Map;
 public class RecipeWebController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);
-    private static final String ERROR_MSG = "Error occurred while reading template";
+    public static final String ERROR_MSG = "Error occurred";
 
     protected OkHttpClient getHttpClient() {
         return new OkHttpClient();
