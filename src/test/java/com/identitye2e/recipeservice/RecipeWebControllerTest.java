@@ -103,7 +103,7 @@ class RecipeWebControllerTest {
 
 
     @Test
-    public void testMainEndpoint() {
+    void testMainEndpoint() {
         given()
                 .contentType(ContentType.HTML)
                 .when()
@@ -113,7 +113,7 @@ class RecipeWebControllerTest {
     }
 
     @Test
-    public void testDisplayRecipesEndpoint() {
+    void testDisplayRecipesEndpoint() {
         String responseBody = given()
                 .contentType(ContentType.HTML)
                 .param("query", "chicken")
@@ -127,7 +127,7 @@ class RecipeWebControllerTest {
     }
 
     @Test
-    public void testRecipeDetailsEndpoint() {
+    void testRecipeDetailsEndpoint() {
         String responseBody = given()
                 .contentType(ContentType.HTML)
                 .param("id", 3289)
