@@ -9,6 +9,30 @@ import java.util.List;
 
 public class Root {
 
+    @JsonProperty("name")
+    public String name;
+
+    @JsonProperty("video_url")
+    public String videoUrl;
+
+    @JsonProperty("description")
+    public String description;
+
+    @JsonProperty("sections")
+    public List<Section> sections;
+
+    @JsonProperty("instructions")
+    public List<Instruction> instructions;
+
+    @JsonProperty("num_servings")
+    public int numServings;
+
+    @JsonProperty("nutrition")
+    public Nutrition nutrition;
+
+    @JsonProperty("thumbnail_url")
+    private String thumbnailUrl;
+
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
@@ -17,8 +41,6 @@ public class Root {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    @JsonProperty("thumbnail_url")
-    private String thumbnailUrl;
 
     public String getName() {
         return name;
@@ -76,26 +98,7 @@ public class Root {
         this.nutrition = nutrition;
     }
 
-    @JsonProperty("name")
-    public String name;
 
-    @JsonProperty("video_url")
-    public String videoUrl;
-
-    @JsonProperty("description")
-    public String description;
-
-    @JsonProperty("sections")
-    public List<Section> sections;
-
-    @JsonProperty("instructions")
-    public List<Instruction> instructions;
-
-    @JsonProperty("num_servings")
-    public int numServings;
-
-    @JsonProperty("nutrition")
-    public Nutrition nutrition;
 
 
     @Override

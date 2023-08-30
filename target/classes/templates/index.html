@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+
+<body>
+<div class="bg-slideshow">
+    <div class="bg-image"></div>
+    <div class="bg-image"></div>
+    <div class="bg-image"></div>
+</div>
+<div class="container">
+    <h1>Recipe Search</h1>
+    <div class="search-container">
+        <form action="/displayRecipes" method="get" onsubmit="return validateQuery()">
+            <label for="query">Search for recipes:</label><br>
+            <input type="text" id="query" name="query" placeholder="Search for recipes..."><br>
+            <span id="error-msg" style="color: red; display: none;">Please enter a valid query.</span><br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
