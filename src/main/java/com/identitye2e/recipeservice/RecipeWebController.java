@@ -28,7 +28,7 @@ public class RecipeWebController {
     public static final String ERROR_MSG = "Error occurred";
 
     @Autowired
-    private FileService fileService;
+    FileService fileService;
 
     protected OkHttpClient getHttpClient() {
         return new OkHttpClient();
@@ -93,7 +93,7 @@ public class RecipeWebController {
 
 
 
-    private String renderTemplate(List<RecipeResult> recipes) {
+    String renderTemplate(List<RecipeResult> recipes) {
         Jinjava jinjava = new Jinjava();
 
         Map<String, Object> context = new HashMap<>();
@@ -138,11 +138,11 @@ public class RecipeWebController {
             }
         } catch (IOException e) {
             LOGGER.error("Error fetching the recipe details page", e);
-            return null; // Handle this appropriately
+            return null;
         }
     }
 
-    private String renderRecipeDetailTemplate(Root recipeDetail) {
+    String renderRecipeDetailTemplate(Root recipeDetail) {
 
         Jinjava jinjava = new Jinjava();
 

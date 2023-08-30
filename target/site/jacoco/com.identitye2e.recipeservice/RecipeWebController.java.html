@@ -28,7 +28,7 @@ import java.util.Map;
     public static final String ERROR_MSG = &quot;Error occurred&quot;;
 
     @Autowired
-    private FileService fileService;
+    FileService fileService;
 
     protected OkHttpClient getHttpClient() {
 <span class="nc" id="L34">        return new OkHttpClient();</span>
@@ -43,9 +43,9 @@ import java.util.Map;
     public String index() {
         try {
 <span class="fc" id="L45">            return fileService.readFileContent(&quot;src/main/resources/templates/index.html&quot;);</span>
-<span class="fc" id="L46">        } catch (IOException e) {</span>
-<span class="fc" id="L47">            LOGGER.error(ERROR_MSG, e);</span>
-<span class="fc" id="L48">            return ERROR_MSG;</span>
+<span class="nc" id="L46">        } catch (IOException e) {</span>
+<span class="nc" id="L47">            LOGGER.error(ERROR_MSG, e);</span>
+<span class="nc" id="L48">            return ERROR_MSG;</span>
         }
     }
 
@@ -93,22 +93,22 @@ import java.util.Map;
 
 
 
-    private String renderTemplate(List&lt;RecipeResult&gt; recipes) {
-<span class="nc" id="L97">        Jinjava jinjava = new Jinjava();</span>
+    String renderTemplate(List&lt;RecipeResult&gt; recipes) {
+<span class="fc" id="L97">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="nc" id="L99">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L100">        context.put(&quot;recipes&quot;, recipes);</span>
+<span class="fc" id="L99">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L100">        context.put(&quot;recipes&quot;, recipes);</span>
 
-<span class="nc" id="L102">        String template = &quot;&quot;;</span>
+<span class="fc" id="L102">        String template = &quot;&quot;;</span>
         try {
-<span class="nc" id="L104">            template = fileService.readFileContent(&quot;src/main/resources/templates/recipes.html&quot;);</span>
+<span class="fc" id="L104">            template = fileService.readFileContent(&quot;src/main/resources/templates/recipes.html&quot;);</span>
 <span class="nc" id="L105">        } catch (IOException e) {</span>
 <span class="nc" id="L106">            LOGGER.error(ERROR_MSG, e);</span>
 <span class="nc" id="L107">            return ERROR_MSG;</span>
-<span class="nc" id="L108">        }</span>
+<span class="fc" id="L108">        }</span>
 
 
-<span class="nc" id="L111">        return jinjava.render(template, context);</span>
+<span class="fc" id="L111">        return jinjava.render(template, context);</span>
     }
 
 
@@ -138,27 +138,27 @@ import java.util.Map;
             }
 <span class="nc" id="L139">        } catch (IOException e) {</span>
 <span class="nc" id="L140">            LOGGER.error(&quot;Error fetching the recipe details page&quot;, e);</span>
-<span class="nc" id="L141">            return null; // Handle this appropriately</span>
+<span class="nc" id="L141">            return null;</span>
         }
     }
 
-    private String renderRecipeDetailTemplate(Root recipeDetail) {
+    String renderRecipeDetailTemplate(Root recipeDetail) {
 
-<span class="nc" id="L147">        Jinjava jinjava = new Jinjava();</span>
+<span class="fc" id="L147">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="nc" id="L149">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L150">        context.put(&quot;recipe&quot;, recipeDetail);</span>
+<span class="fc" id="L149">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L150">        context.put(&quot;recipe&quot;, recipeDetail);</span>
 
-<span class="nc" id="L152">        String template = &quot;&quot;;</span>
+<span class="fc" id="L152">        String template = &quot;&quot;;</span>
         try {
 
-<span class="nc" id="L155">            template = fileService.readFileContent(&quot;src/main/resources/templates/recipeDetail.html&quot;);</span>
+<span class="fc" id="L155">            template = fileService.readFileContent(&quot;src/main/resources/templates/recipeDetail.html&quot;);</span>
 <span class="nc" id="L156">        } catch (IOException e) {</span>
 <span class="nc" id="L157">            LOGGER.error(ERROR_MSG, e);</span>
 <span class="nc" id="L158">            return ERROR_MSG;</span>
-<span class="nc" id="L159">        }</span>
+<span class="fc" id="L159">        }</span>
 
-<span class="nc" id="L161">        return jinjava.render(template, context);</span>
+<span class="fc" id="L161">        return jinjava.render(template, context);</span>
     }
 
 

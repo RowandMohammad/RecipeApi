@@ -2,6 +2,7 @@ stepdefs\RecipeServiceSteps.class
 com\identitye2e\recipeservice\RecipeWebControllerTest.class
 com\identitye2e\recipeservice\UnitTest.class
 com\identitye2e\recipeservice\NutritionTest.class
+com\identitye2e\recipeservice\FileServiceTest.class
 com\identitye2e\recipeservice\RecipeListResponseTest.class
 com\identitye2e\recipeservice\InstructionTest.class
 com\identitye2e\recipeservice\RecipeResultTest.class
