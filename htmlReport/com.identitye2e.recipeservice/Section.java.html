@@ -3,25 +3,25 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 <span class="fc" id="L10">public class Section {</span>
     @JsonProperty(&quot;components&quot;)
-    public ArrayList&lt;Component&gt; components;
+    public List&lt;Component&gt; components;
 
-    public ArrayList&lt;Component&gt; getComponents() {
-<span class="nc" id="L15">        return components;</span>
+    public List&lt;Component&gt; getComponents() {
+<span class="fc" id="L15">        return components;</span>
     }
 
-    public void setComponents(ArrayList&lt;Component&gt; components) {
-<span class="nc" id="L19">        this.components = components;</span>
-<span class="nc" id="L20">    }</span>
+    public void setComponents(List&lt;Component&gt; components) {
+<span class="fc" id="L19">        this.components = components;</span>
+<span class="fc" id="L20">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L24">        return &quot;Section{&quot; +</span>
+<span class="fc" id="L24">        return &quot;Section{&quot; +</span>
                 &quot;components=&quot; + components +
                 '}';
     }

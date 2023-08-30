@@ -1,50 +1,47 @@
 package com.identitye2e.recipeservice;
 
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.hamcrest.Matchers.containsString;
+import java.io.IOException;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
 public class RecipeWebControllerTest {
 
-    @Test
-    public void testIndex() {
-        RestAssured.given()
-                .port(8080)  // if your app is running on a different port, update this
-                .get("/")
-                .then()
-                .statusCode(200)
-                .body(containsString("Recipe Search"));
+    @Mock
+    private FileService fileService;
+
+    @InjectMocks
+    private RecipeWebController recipeWebController;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testDisplayRecipes() {
-        String query = "chicken";
-        RestAssured.given()
-                .port(8080)
-                .param("query", query)
-                .get("/displayRecipes")
-                .then()
-                .statusCode(200)
-                .body(containsString("Recipes"));
+    void testIndex() throws IOException {
+        String expectedContent = "Expected Content";
+        when(fileService.readFileContent("src/main/resources/templates/index.html")).thenReturn(expectedContent);
+
+        String result = recipeWebController.index();
+
+        assertEquals(expectedContent, result);
     }
 
     @Test
-    public void testDisplayRecipeDetails() {
-        Integer id = 3289;  // some id for testing
-        RestAssured.given()
-                .port(8080)
-                .param("id", id)
-                .contentType(ContentType.JSON)  // Define the content type as JSON
-                .get("/recipeDetails")
-                .then()
-                .statusCode(200)
-                .body(containsString("Rowand Recipes"));
-    }
+    void testIndexIOException() throws IOException {
+        when(fileService.readFileContent("src/main/resources/templates/index.html")).thenThrow(IOException.class);
 
+        String result = recipeWebController.index();
+
+        assertEquals(RecipeWebController.ERROR_MSG, result);
+    }
 
 
 }

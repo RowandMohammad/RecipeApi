@@ -8,15 +8,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,13 +27,13 @@ public class RecipeWebController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);
     public static final String ERROR_MSG = "Error occurred";
 
+    @Autowired
+    private FileService fileService;
+
     protected OkHttpClient getHttpClient() {
         return new OkHttpClient();
     }
 
-    protected String readFileContent(String path) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
-    }
 
 
 
@@ -44,7 +42,7 @@ public class RecipeWebController {
     @ResponseBody
     public String index() {
         try {
-            return new String(Files.readAllBytes(Paths.get("src/main/resources/templates/index.html")), StandardCharsets.UTF_8);
+            return fileService.readFileContent("src/main/resources/templates/index.html");
         } catch (IOException e) {
             LOGGER.error(ERROR_MSG, e);
             return ERROR_MSG;
@@ -60,7 +58,7 @@ public class RecipeWebController {
 
 
 
-    private List<RecipeResult> fetchAndRenderRecipes(String query) {
+    List<RecipeResult> fetchAndRenderRecipes(String query) {
         try {
             return callTastyAPI(query);
         } catch (Exception e) {
@@ -103,7 +101,7 @@ public class RecipeWebController {
 
         String template = "";
         try {
-            template = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/recipes.html")), StandardCharsets.UTF_8);
+            template = fileService.readFileContent("src/main/resources/templates/recipes.html");
         } catch (IOException e) {
             LOGGER.error(ERROR_MSG, e);
             return ERROR_MSG;
@@ -121,7 +119,7 @@ public class RecipeWebController {
         return renderRecipeDetailTemplate(recipeDetail);
     }
 
-    private Root fetchRecipeDetails(Integer id) {
+    Root fetchRecipeDetails(Integer id) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://tasty.p.rapidapi.com/recipes/get-more-info?id=" + id)
@@ -154,7 +152,7 @@ public class RecipeWebController {
         String template = "";
         try {
 
-            template = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/recipeDetail.html")), StandardCharsets.UTF_8);
+            template = fileService.readFileContent("src/main/resources/templates/recipeDetail.html");
         } catch (IOException e) {
             LOGGER.error(ERROR_MSG, e);
             return ERROR_MSG;
