@@ -1,0 +1,11 @@
+<div>
+    <h1>Recipe Search Results:</h1>
+
+    {% for recipe in recipes %}
+    <div>
+        <h2>{{ recipe.display }}</h2>
+        <p>Search Value: {{ recipe.searchValue }}</p>
+        <p>Type: {{ recipe.type }}</p>
+    </div>
+    {% endfor %}
+</div>
