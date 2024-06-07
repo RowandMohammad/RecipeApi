@@ -7,6 +7,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
@@ -20,17 +21,28 @@ import java.util.Map;
 @Controller
 public class RecipeWebController {
 
-    @GetMapping("/displayRecipes")
+    @GetMapping("/")
     @ResponseBody
-    public String displayRecipes() {
-        return testTastyAPI();
+    public String index() {
+        try {
+            return new String(Files.readAllBytes(Paths.get("src/main/resources/templates/index.html")), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error occurred while reading the index page";
+        }
     }
 
-    private String testTastyAPI() {
+    @GetMapping("/displayRecipes")
+    @ResponseBody
+    public String displayRecipes(@RequestParam String query) {
+        return testTastyAPI(query);
+    }
+
+    private String testTastyAPI(String query) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=chicken")
+                .url("https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=" + query)
                 .get()
                 .addHeader("X-RapidAPI-Key", "5d6b6ca9b0msh6f72ab9454d5861p17be82jsn10aa54bd2876")
                 .addHeader("X-RapidAPI-Host", "tasty.p.rapidapi.com")

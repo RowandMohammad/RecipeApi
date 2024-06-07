@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecipeWebController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">recipe-service</a> &gt; <a href="index.source.html" class="el_package">com.identitye2e.recipeservice</a> &gt; <span class="el_source">RecipeWebController.java</span></div><h1>RecipeWebController.java</h1><pre class="source lang-java linenums">package com.identitye2e.recipeservice;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hubspot.jinjava.Jinjava;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Controller
+<span class="fc" id="L22">public class RecipeWebController {</span>
+
+    @GetMapping(&quot;/&quot;)
+    @ResponseBody
+    public String index() {
+        try {
+<span class="nc" id="L28">            return new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/index.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L29">        } catch (IOException e) {</span>
+<span class="nc" id="L30">            e.printStackTrace();</span>
+<span class="nc" id="L31">            return &quot;Error occurred while reading the index page&quot;;</span>
+        }
+    }
+
+    @GetMapping(&quot;/displayRecipes&quot;)
+    @ResponseBody
+    public String displayRecipes(@RequestParam String query) {
+<span class="nc" id="L38">        return testTastyAPI(query);</span>
+    }
+
+    private String testTastyAPI(String query) {
+<span class="nc" id="L42">        OkHttpClient client = new OkHttpClient();</span>
+
+<span class="nc" id="L44">        Request request = new Request.Builder()</span>
+<span class="nc" id="L45">                .url(&quot;https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=&quot; + query)</span>
+<span class="nc" id="L46">                .get()</span>
+<span class="nc" id="L47">                .addHeader(&quot;X-RapidAPI-Key&quot;, &quot;5d6b6ca9b0msh6f72ab9454d5861p17be82jsn10aa54bd2876&quot;)</span>
+<span class="nc" id="L48">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
+<span class="nc" id="L49">                .build();</span>
+        try {
+<span class="nc" id="L51">            Response response = client.newCall(request).execute();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (response.isSuccessful()) {</span>
+<span class="nc" id="L53">                String responseBody = response.body().string();</span>
+
+                // Deserialize JSON using Jackson's ObjectMapper
+<span class="nc" id="L56">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="nc" id="L57">                AutoCompleteResponse autoCompleteResponse = objectMapper.readValue(responseBody, AutoCompleteResponse.class);</span>
+
+<span class="nc" id="L59">                return renderTemplate(autoCompleteResponse.getResults());</span>
+
+            } else {
+<span class="nc" id="L62">                return &quot;Failed to fetch data. Response code: &quot; + response.code();</span>
+            }
+<span class="nc" id="L64">        } catch (Exception e) {</span>
+<span class="nc" id="L65">            e.printStackTrace();</span>
+<span class="nc" id="L66">            return &quot;Error occurred while calling the Tasty API&quot;;</span>
+        }
+    }
+
+    private String renderTemplate(List&lt;RecipeResult&gt; recipes) {
+<span class="nc" id="L71">        Jinjava jinjava = new Jinjava();</span>
+
+<span class="nc" id="L73">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L74">        context.put(&quot;recipes&quot;, recipes);</span>
+
+<span class="nc" id="L76">        String template = &quot;&quot;;</span>
+        try {
+<span class="nc" id="L78">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipes.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L79">        } catch (IOException e) {</span>
+<span class="nc" id="L80">            e.printStackTrace();</span>
+<span class="nc" id="L81">            return &quot;Error occurred while reading template&quot;;</span>
+<span class="nc" id="L82">        }</span>
+
+<span class="nc" id="L84">        return jinjava.render(template, context);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
