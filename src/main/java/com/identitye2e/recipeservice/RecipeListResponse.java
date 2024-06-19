@@ -2,9 +2,17 @@ package com.identitye2e.recipeservice;
 
 import java.util.List;
 
-public class AutoCompleteResponse {
-
+public class RecipeListResponse {
+    private int count;
     private List<RecipeResult> results;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public List<RecipeResult> getResults() {
         return results;
@@ -14,14 +22,9 @@ public class AutoCompleteResponse {
         this.results = results;
     }
 
-
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Search Results:\n");
-        for (RecipeResult result : results) {
-            sb.append(result.toString()).append("\n");
-        }
-        return sb.toString();
+        return "Count: " + count + "\n" +
+                "Results: " + results + "\n";
     }
 }

@@ -1,45 +1,58 @@
 package com.identitye2e.recipeservice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class RecipeResult {
-    private String display;
+    private String name;
+    private String description;
+    @JsonProperty("thumbnail_url")
+    private String thumbnailUrl;
+    private Integer id;
 
-    @JsonProperty("search_value")
-    private String searchValue;
-    private String type;
 
-    public String getDisplay() {
-        return display;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDisplay(String display) {
-        this.display = display;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getSearchValue() {
-        return searchValue;
+
+
+
+    public String getName() {
+        return name;
     }
 
-    public void setSearchValue(String searchValue) {
-        this.searchValue = searchValue;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getDescription() {
+        return description;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
 
     @Override
     public String toString() {
-        return "Recipe: " + display + "\n" +
-                "Search Value: " + searchValue + "\n" +
-                "Type: " + type + "\n";
+        return "Name: " + name + "\n" +
+                "Description: " + description + "\n" +
+                "Thumbnail URL: " + thumbnailUrl + "\n";
     }
 }
-
-
-
