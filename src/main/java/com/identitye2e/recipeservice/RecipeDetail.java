@@ -14,7 +14,19 @@ public class RecipeDetail {
     @JsonProperty("thumbnail_url")
     private String thumbnailUrl;
 
-    // Getters and setters
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    @JsonProperty("video_url")
+    private String videoUrl;
+
+
+
 
     public String getName() {
         return name;
@@ -111,19 +123,6 @@ public class RecipeDetail {
 
             return this.displayText.toLowerCase().matches(".*" + timePattern + ".*");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
