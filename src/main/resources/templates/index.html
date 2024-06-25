@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Recipe Search</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure to update the path -->
 </head>
+
 <body>
-<h1>Recipe Search</h1>
-<form action="/displayRecipes" method="get">
-    <label for="query">Search for recipes:</label>
-    <input type="text" id="query" name="query">
-    <button type="submit">Search</button>
-</form>
+<div class="container">
+    <h1>Recipe Search</h1>
+    <div class="search-container">
+        <form action="/displayRecipes" method="get">
+            <label for="query">Search for recipes:</label><br>
+            <input type="text" id="query" name="query"><br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
 </body>
+
 </html>

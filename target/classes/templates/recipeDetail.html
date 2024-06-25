@@ -4,60 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
-  <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+  <link href="styles.css" rel="stylesheet" />
+  <script src="scripts.js" defer></script>
   <title>Recipe Details</title>
 </head>
 
 <body>
-<h1>{{recipe.name}}</h1>
-<img src="{{recipe.thumbnailUrl}}" alt="Recipe Thumbnail" width="250" height="auto">
+<div class="container">
+  <h1 class="title">{{recipe.name}}</h1>
+  <img class="recipe-image" src="{{recipe.thumbnailUrl}}" alt="Recipe Thumbnail">
 
-<p>{{recipe.description}}</p>
+  <p class="description">{{recipe.description}}</p>
 
-<div class="ingredients">
-  <h2>Ingredients</h2>
-  <ul>
-    {% for section in recipe.sections %}
-    {% for component in section.components %}
-    {% if component.rawText != 'n/a' %}
-    <li>{{component.rawText}}</li>
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-  </ul>
-</div>
-
-<p>Serves: {{recipe.numServings}} people</p>
-
-<div class="instructions">
-  <h2>Instructions</h2>
-  <ol>
-    {% for instruction in recipe.instructions %}
-    <li>
-      <p>{{instruction.displayText}}</p>
-      {% if loop.last or not instruction.shouldDisplayDuration() %}
-      {# Don't display duration #}
-      {% elif instruction.displayText | regex_search('(\\d+ (seconds?|minutes?|hours?))') %}
-      {# Don't display duration if time is mentioned in the description #}
-      {% else %}
-      <p>Duration: {{ instruction.getDurationInMinutes() }} minutes</p>
+  <div class="ingredients">
+    <h2>Ingredients</h2>
+    <ul>
+      {% for section in recipe.sections %}
+      {% for component in section.components %}
+      {% if component.rawText != 'n/a' %}
+      <li>{{component.rawText}}</li>
       {% endif %}
-    </li>
-    {% endfor %}
-  </ol>
-</div>
+      {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
 
-<div class="nutrition">
-  <h2>Nutrition Information</h2>
-  <ul>
-    <li>Calories: {{recipe.nutrition.calories}}</li>
-    <li>Carbohydrates: {{recipe.nutrition.carbohydrates}}g</li>
-    <li>Fat: {{recipe.nutrition.fat}}g</li>
-    <li>Protein: {{recipe.nutrition.protein}}g</li>
-    <li>Sugar: {{recipe.nutrition.sugar}}g</li>
-    <li>Fiber: {{recipe.nutrition.fiber}}g</li>
-  </ul>
+  <p class="servings">Serves: {{recipe.numServings}} people</p>
+
+  <div class="instructions">
+    <h2>Instructions</h2>
+    <ol>
+      {% for instruction in recipe.instructions %}
+      <li>
+        <p>{{instruction.displayText}}</p>
+        {% if loop.last or not instruction.shouldDisplayDuration() %}
+        {# Don't display duration #}
+        {% elif instruction.displayText | regex_search('(\\d+ (seconds?|minutes?|hours?))') %}
+        {# Don't display duration if time is mentioned in the description #}
+        {% else %}
+        <p>Duration: {{ instruction.getDurationInMinutes() }} minutes</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="nutrition">
+    <h2>Nutrition Information</h2>
+    <ul>
+      <li>Calories: {{recipe.nutrition.calories}}</li>
+      <li>Carbohydrates: {{recipe.nutrition.carbohydrates}}g</li>
+      <li>Fat: {{recipe.nutrition.fat}}g</li>
+      <li>Protein: {{recipe.nutrition.protein}}g</li>
+      <li>Sugar: {{recipe.nutrition.sugar}}g</li>
+      <li>Fiber: {{recipe.nutrition.fiber}}g</li>
+    </ul>
+  </div>
 </div>
 </body>
 
