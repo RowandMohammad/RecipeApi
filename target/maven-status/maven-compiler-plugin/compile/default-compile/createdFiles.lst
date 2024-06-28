@@ -1,7 +1,6 @@
 com\identitye2e\recipeservice\Measurement.class
 com\identitye2e\recipeservice\Component.class
 com\identitye2e\recipeservice\Instruction.class
-com\identitye2e\recipeservice\RecipeDetail.class
 com\identitye2e\recipeservice\Nutrition.class
 com\identitye2e\recipeservice\RecipeResult.class
 com\identitye2e\recipeservice\RecipeServiceApplication.class
@@ -9,7 +8,5 @@ com\identitye2e\recipeservice\Unit.class
 com\identitye2e\recipeservice\Root.class
 com\identitye2e\recipeservice\Section.class
 com\identitye2e\recipeservice\RecipeListResponse.class
-com\identitye2e\recipeservice\RecipeDetail$Instruction.class
 com\identitye2e\recipeservice\Ingredient.class
 com\identitye2e\recipeservice\RecipeWebController.class
-com\identitye2e\recipeservice\RecipeDetail$Nutrition.class
