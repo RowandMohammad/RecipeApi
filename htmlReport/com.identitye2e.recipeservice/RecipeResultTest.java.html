@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecipeResultTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.identitye2e.recipeservice</a> &gt; <span class="el_source">RecipeResultTest.java</span></div><h1>RecipeResultTest.java</h1><pre class="source lang-java linenums">package com.identitye2e.recipeservice;
 
-<span class="nc" id="L3">public class RecipeResultTest {</span>
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+<span class="fc" id="L8">class RecipeResultTest {</span>
+
+    private RecipeResult recipeResult;
+
+    @BeforeEach
+    void setUp() {
+<span class="fc" id="L14">        recipeResult = new RecipeResult();</span>
+<span class="fc" id="L15">    }</span>
+
+    @Test
+    void testId() {
+<span class="fc" id="L19">        Integer id = 1;</span>
+<span class="fc" id="L20">        recipeResult.setId(id);</span>
+<span class="fc" id="L21">        assertEquals(id, recipeResult.getId());</span>
+<span class="fc" id="L22">    }</span>
+
+    @Test
+    void testName() {
+<span class="fc" id="L26">        String name = &quot;Delicious Recipe&quot;;</span>
+<span class="fc" id="L27">        recipeResult.setName(name);</span>
+<span class="fc" id="L28">        assertEquals(name, recipeResult.getName());</span>
+<span class="fc" id="L29">    }</span>
+
+    @Test
+    void testDescription() {
+<span class="fc" id="L33">        String description = &quot;A detailed description about the recipe.&quot;;</span>
+<span class="fc" id="L34">        recipeResult.setDescription(description);</span>
+<span class="fc" id="L35">        assertEquals(description, recipeResult.getDescription());</span>
+<span class="fc" id="L36">    }</span>
+
+    @Test
+    void testThumbnailUrl() {
+<span class="fc" id="L40">        String thumbnailUrl = &quot;http://example.com/thumbnail.jpg&quot;;</span>
+<span class="fc" id="L41">        recipeResult.setThumbnailUrl(thumbnailUrl);</span>
+<span class="fc" id="L42">        assertEquals(thumbnailUrl, recipeResult.getThumbnailUrl());</span>
+<span class="fc" id="L43">    }</span>
+
+    @Test
+    void testToString() {
+<span class="fc" id="L47">        recipeResult.setName(&quot;Delicious Recipe&quot;);</span>
+<span class="fc" id="L48">        recipeResult.setDescription(&quot;A detailed description about the recipe.&quot;);</span>
+<span class="fc" id="L49">        recipeResult.setThumbnailUrl(&quot;http://example.com/thumbnail.jpg&quot;);</span>
+
+<span class="fc" id="L51">        String expectedString = &quot;Name: Delicious Recipe\n&quot; +</span>
+                &quot;Description: A detailed description about the recipe.\n&quot; +
+                &quot;Thumbnail URL: http://example.com/thumbnail.jpg\n&quot;;
+
+<span class="fc" id="L55">        assertEquals(expectedString, recipeResult.toString());</span>
+<span class="fc" id="L56">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -24,6 +24,9 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeWebController {
 
+
+
+
     @GetMapping("/")
     @ResponseBody
     public String index() {
@@ -55,11 +58,10 @@ public class RecipeWebController {
 
     private List<RecipeResult> callTastyAPI(String query) throws IOException {
         OkHttpClient client = new OkHttpClient();
-
         Request request = new Request.Builder()
                 .url("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=" + query)
                 .get()
-                .addHeader("X-RapidAPI-Key", System.getenv("X-RapidAPI-Key"))
+                .addHeader("X-RapidAPI-Key", System.getenv("X_RAPIDAPI_KEY"))
                 .addHeader("X-RapidAPI-Host", "tasty.p.rapidapi.com")
                 .build();
 
@@ -111,7 +113,7 @@ public class RecipeWebController {
         Request request = new Request.Builder()
                 .url("https://tasty.p.rapidapi.com/recipes/get-more-info?id=" + id)
                 .get()
-                .addHeader("X-RapidAPI-Key", System.getenv("X-RapidAPI-Key"))
+                .addHeader("X-RapidAPI-Key", System.getenv("X_RAPIDAPI_KEY"))
                 .addHeader("X-RapidAPI-Host", "tasty.p.rapidapi.com")
                 .build();
 

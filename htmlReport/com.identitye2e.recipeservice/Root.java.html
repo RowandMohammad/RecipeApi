@@ -7,74 +7,74 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-<span class="nc" id="L10">public class Root {</span>
+<span class="fc" id="L10">public class Root {</span>
 
     public String getThumbnailUrl() {
-<span class="nc" id="L13">        return thumbnailUrl;</span>
+<span class="fc" id="L13">        return thumbnailUrl;</span>
     }
 
     public void setThumbnailUrl(String thumbnailUrl) {
-<span class="nc" id="L17">        this.thumbnailUrl = thumbnailUrl;</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L17">        this.thumbnailUrl = thumbnailUrl;</span>
+<span class="fc" id="L18">    }</span>
 
     @JsonProperty(&quot;thumbnail_url&quot;)
     private String thumbnailUrl;
 
     public String getName() {
-<span class="nc" id="L24">        return name;</span>
+<span class="fc" id="L24">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L28">        this.name = name;</span>
-<span class="nc" id="L29">    }</span>
+<span class="fc" id="L28">        this.name = name;</span>
+<span class="fc" id="L29">    }</span>
 
     public String getVideoUrl() {
-<span class="nc" id="L32">        return videoUrl;</span>
+<span class="fc" id="L32">        return videoUrl;</span>
     }
 
     public void setVideoUrl(String videoUrl) {
-<span class="nc" id="L36">        this.videoUrl = videoUrl;</span>
-<span class="nc" id="L37">    }</span>
+<span class="fc" id="L36">        this.videoUrl = videoUrl;</span>
+<span class="fc" id="L37">    }</span>
 
     public String getDescription() {
-<span class="nc" id="L40">        return description;</span>
+<span class="fc" id="L40">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L44">        this.description = description;</span>
-<span class="nc" id="L45">    }</span>
+<span class="fc" id="L44">        this.description = description;</span>
+<span class="fc" id="L45">    }</span>
 
     public ArrayList&lt;Section&gt; getSections() {
-<span class="nc" id="L48">        return sections;</span>
+<span class="fc" id="L48">        return sections;</span>
     }
 
     public void setSections(ArrayList&lt;Section&gt; sections) {
-<span class="nc" id="L52">        this.sections = sections;</span>
-<span class="nc" id="L53">    }</span>
+<span class="fc" id="L52">        this.sections = sections;</span>
+<span class="fc" id="L53">    }</span>
 
     public ArrayList&lt;Instruction&gt; getInstructions() {
-<span class="nc" id="L56">        return instructions;</span>
+<span class="fc" id="L56">        return instructions;</span>
     }
 
     public void setInstructions(ArrayList&lt;Instruction&gt; instructions) {
-<span class="nc" id="L60">        this.instructions = instructions;</span>
-<span class="nc" id="L61">    }</span>
+<span class="fc" id="L60">        this.instructions = instructions;</span>
+<span class="fc" id="L61">    }</span>
 
     public int getNumServings() {
-<span class="nc" id="L64">        return numServings;</span>
+<span class="fc" id="L64">        return numServings;</span>
     }
 
     public void setNumServings(int numServings) {
-<span class="nc" id="L68">        this.numServings = numServings;</span>
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L68">        this.numServings = numServings;</span>
+<span class="fc" id="L69">    }</span>
 
     public Nutrition getNutrition() {
-<span class="nc" id="L72">        return nutrition;</span>
+<span class="fc" id="L72">        return nutrition;</span>
     }
 
     public void setNutrition(Nutrition nutrition) {
-<span class="nc" id="L76">        this.nutrition = nutrition;</span>
-<span class="nc" id="L77">    }</span>
+<span class="fc" id="L76">        this.nutrition = nutrition;</span>
+<span class="fc" id="L77">    }</span>
 
     @JsonProperty(&quot;name&quot;)
     public String name;
@@ -100,7 +100,7 @@ import java.util.ArrayList;
 
     @Override
     public String toString() {
-<span class="nc" id="L103">        return &quot;Root{&quot; +</span>
+<span class="fc" id="L103">        return &quot;Root{&quot; +</span>
                 &quot;name='&quot; + name + '\'' +
                 &quot;, videoUrl='&quot; + videoUrl + '\'' +
                 &quot;, description='&quot; + description + '\'' +

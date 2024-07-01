@@ -59,7 +59,7 @@ import java.util.Map;
 <span class="nc" id="L59">        Request request = new Request.Builder()</span>
 <span class="nc" id="L60">                .url(&quot;https://tasty.p.rapidapi.com/recipes/list?from=0&amp;size=20&amp;q=&quot; + query)</span>
 <span class="nc" id="L61">                .get()</span>
-<span class="nc" id="L62">                .addHeader(&quot;X-RapidAPI-Key&quot;, &quot;5d6b6ca9b0msh6f72ab9454d5861p17be82jsn10aa54bd2876&quot;)</span>
+<span class="nc" id="L62">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X-RapidAPI-Key&quot;))</span>
 <span class="nc" id="L63">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
 <span class="nc" id="L64">                .build();</span>
 
@@ -111,7 +111,7 @@ import java.util.Map;
 <span class="nc" id="L111">        Request request = new Request.Builder()</span>
 <span class="nc" id="L112">                .url(&quot;https://tasty.p.rapidapi.com/recipes/get-more-info?id=&quot; + id)</span>
 <span class="nc" id="L113">                .get()</span>
-<span class="nc" id="L114">                .addHeader(&quot;X-RapidAPI-Key&quot;, &quot;5d6b6ca9b0msh6f72ab9454d5861p17be82jsn10aa54bd2876&quot;)</span>
+<span class="nc" id="L114">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X-RapidAPI-Key&quot;))</span>
 <span class="nc" id="L115">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
 <span class="nc" id="L116">                .build();</span>
 
