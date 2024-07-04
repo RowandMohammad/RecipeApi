@@ -6,6 +6,8 @@ import com.hubspot.jinjava.Jinjava;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeWebController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);
 
 
 
@@ -33,7 +36,7 @@ public class RecipeWebController {
         try {
             return new String(Files.readAllBytes(Paths.get("src/main/resources/templates/index.html")), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error reading the index page", e);
             return "Error occurred while reading the index page";
         }
     }
@@ -51,7 +54,7 @@ public class RecipeWebController {
         try {
             return callTastyAPI(query);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Error fetching the recipes page", e);
             return new ArrayList<>(); // Return an empty list in case of error
         }
     }
@@ -92,7 +95,7 @@ public class RecipeWebController {
         try {
             template = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/recipes.html")), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error occurred while reading template", e);
             return "Error occurred while reading template";
         }
 
@@ -126,7 +129,7 @@ public class RecipeWebController {
                 throw new IOException("Failed to fetch data. Response code: " + response.code());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error fetching the recipe details page", e);
             return null; // Handle this appropriately
         }
     }
@@ -136,19 +139,17 @@ public class RecipeWebController {
 
         Map<String, Object> context = new HashMap<>();
         context.put("recipe", recipeDetail);
-        System.out.println(recipeDetail.name);
 
         String template = "";
         try {
 
             template = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/recipeDetail.html")), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error occurred while reading template", e);
             return "Error occurred while reading template";
         }
 
-        System.out.println(recipeDetail);
-
+        LOGGER.debug(String.valueOf(recipeDetail));
         return jinjava.render(template, context);
     }
 

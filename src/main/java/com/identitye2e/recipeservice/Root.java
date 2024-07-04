@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -44,7 +45,7 @@ public class Root {
         this.description = description;
     }
 
-    public ArrayList<Section> getSections() {
+    public List<Section> getSections() {
         return sections;
     }
 
@@ -52,7 +53,7 @@ public class Root {
         this.sections = sections;
     }
 
-    public ArrayList<Instruction> getInstructions() {
+    public List<Instruction> getInstructions() {
         return instructions;
     }
 
@@ -86,10 +87,10 @@ public class Root {
     public String description;
 
     @JsonProperty("sections")
-    public ArrayList<Section> sections;
+    public List<Section> sections;
 
     @JsonProperty("instructions")
-    public ArrayList<Instruction> instructions;
+    public List<Instruction> instructions;
 
     @JsonProperty("num_servings")
     public int numServings;
