@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+recipe-service,com.identitye2e.recipeservice,Ingredient,0,24,0,0,0,10,0,7,0,7
+recipe-service,com.identitye2e.recipeservice,Section,11,3,0,0,4,1,3,1,3,1
+recipe-service,com.identitye2e.recipeservice,Measurement,14,3,0,0,6,1,4,1,4,1
+recipe-service,com.identitye2e.recipeservice,RecipeResult,0,39,0,0,0,14,0,10,0,10
+recipe-service,com.identitye2e.recipeservice,Nutrition,56,3,0,0,19,1,13,1,13,1
+recipe-service,com.identitye2e.recipeservice,RecipeListResponse,0,23,0,0,0,8,0,6,0,6
+recipe-service,com.identitye2e.recipeservice,Instruction,49,3,4,0,12,1,11,1,9,1
+recipe-service,com.identitye2e.recipeservice,RecipeServiceApplication,8,0,0,0,3,0,2,0,2,0
+recipe-service,com.identitye2e.recipeservice,Component,0,32,0,0,0,11,0,8,0,8
+recipe-service,com.identitye2e.recipeservice,RecipeWebController,241,0,4,0,64,0,12,0,10,0
+recipe-service,com.identitye2e.recipeservice,Unit,31,0,0,0,13,0,9,0,9,0
+recipe-service,com.identitye2e.recipeservice,Root,0,75,0,0,0,26,0,18,0,18

@@ -2,8 +2,12 @@ package com.identitye2e.recipeservice;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RootTest {
 
@@ -44,7 +48,7 @@ class RootTest {
 
     @Test
     void testSections() {
-        ArrayList<Section> sections = new ArrayList<>();
+        List<Section> sections = new ArrayList<>();
         sections.add(new Section());
         root.setSections(sections);
         assertEquals(sections, root.getSections());
@@ -52,7 +56,7 @@ class RootTest {
 
     @Test
     void testInstructions() {
-        ArrayList<Instruction> instructions = new ArrayList<>();
+        List<Instruction> instructions = new ArrayList<>();
         instructions.add(new Instruction());
         root.setInstructions(instructions);
         assertEquals(instructions, root.getInstructions());

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<div class="container">
+    <h1>Recipes</h1>
+    <ul class="recipe-list">
+        {% for recipe in recipes %}
+        <li class="recipe-card">
+            <div>
+                <h2><a href="/recipeDetails?id={{ recipe.id }}">{{ recipe.name }}</a></h2>
+                <p>{{ recipe.description }}</p>
+            </div>
+            <img src="{{ recipe.thumbnailUrl }}" alt="Recipe Thumbnail" width="200" height="auto">
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+
+</html>

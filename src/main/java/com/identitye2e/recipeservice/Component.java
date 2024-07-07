@@ -3,13 +3,12 @@ package com.identitye2e.recipeservice;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Component {
     @JsonProperty("measurements")
-    public ArrayList<Measurement> measurements;
+    public List<Measurement> measurements;
 
     @JsonProperty("ingredient")
     public Ingredient ingredient;
@@ -18,7 +17,7 @@ public class Component {
         return measurements;
     }
 
-    public void setMeasurements(ArrayList<Measurement> measurements) {
+    public void setMeasurements(List<Measurement> measurements) {
         this.measurements = measurements;
     }
 

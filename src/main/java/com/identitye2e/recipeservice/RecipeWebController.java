@@ -27,6 +27,8 @@ import java.util.Map;
 public class RecipeWebController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);
+    private static final String ERROR_MSG = "Error occurred while reading template";
+
 
 
 
@@ -36,8 +38,8 @@ public class RecipeWebController {
         try {
             return new String(Files.readAllBytes(Paths.get("src/main/resources/templates/index.html")), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.error("Error reading the index page", e);
-            return "Error occurred while reading the index page";
+            LOGGER.error(ERROR_MSG, e);
+            return ERROR_MSG;
         }
     }
 
@@ -54,7 +56,7 @@ public class RecipeWebController {
         try {
             return callTastyAPI(query);
         } catch (Exception e) {
-            LOGGER.error("Error fetching the recipes page", e);
+            LOGGER.error(ERROR_MSG, e);
             return new ArrayList<>(); // Return an empty list in case of error
         }
     }
@@ -95,8 +97,8 @@ public class RecipeWebController {
         try {
             template = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/recipes.html")), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.error("Error occurred while reading template", e);
-            return "Error occurred while reading template";
+            LOGGER.error(ERROR_MSG, e);
+            return ERROR_MSG;
         }
 
 
@@ -145,11 +147,10 @@ public class RecipeWebController {
 
             template = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/recipeDetail.html")), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.error("Error occurred while reading template", e);
-            return "Error occurred while reading template";
+            LOGGER.error(ERROR_MSG, e);
+            return ERROR_MSG;
         }
 
-        LOGGER.debug(String.valueOf(recipeDetail));
         return jinjava.render(template, context);
     }
 
