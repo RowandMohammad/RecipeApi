@@ -137,6 +137,7 @@ public class RecipeWebController {
     }
 
     private String renderRecipeDetailTemplate(Root recipeDetail) {
+
         Jinjava jinjava = new Jinjava();
 
         Map<String, Object> context = new HashMap<>();
