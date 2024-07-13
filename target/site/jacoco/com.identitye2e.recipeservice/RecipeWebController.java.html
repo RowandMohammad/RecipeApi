@@ -29,6 +29,14 @@ import java.util.Map;
 <span class="nc" id="L29">    private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);</span>
     private static final String ERROR_MSG = &quot;Error occurred while reading template&quot;;
 
+    protected OkHttpClient getHttpClient() {
+<span class="nc" id="L33">        return new OkHttpClient();</span>
+    }
+
+    protected String readFileContent(String path) throws IOException {
+<span class="nc" id="L37">        return new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);</span>
+    }
+
 
 
 
@@ -36,50 +44,50 @@ import java.util.Map;
     @ResponseBody
     public String index() {
         try {
-<span class="nc" id="L39">            return new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/index.html&quot;)), StandardCharsets.UTF_8);</span>
-<span class="nc" id="L40">        } catch (IOException e) {</span>
-<span class="nc" id="L41">            LOGGER.error(ERROR_MSG, e);</span>
-<span class="nc" id="L42">            return ERROR_MSG;</span>
+<span class="nc" id="L47">            return new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/index.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L48">        } catch (IOException e) {</span>
+<span class="nc" id="L49">            LOGGER.error(ERROR_MSG, e);</span>
+<span class="nc" id="L50">            return ERROR_MSG;</span>
         }
     }
 
     @GetMapping(&quot;/displayRecipes&quot;)
     @ResponseBody
     public String displayRecipes(@RequestParam String query) {
-<span class="nc" id="L49">        List&lt;RecipeResult&gt; recipes = fetchAndRenderRecipes(query);</span>
-<span class="nc" id="L50">        return renderTemplate(recipes);</span>
+<span class="nc" id="L57">        List&lt;RecipeResult&gt; recipes = fetchAndRenderRecipes(query);</span>
+<span class="nc" id="L58">        return renderTemplate(recipes);</span>
     }
 
 
 
     private List&lt;RecipeResult&gt; fetchAndRenderRecipes(String query) {
         try {
-<span class="nc" id="L57">            return callTastyAPI(query);</span>
-<span class="nc" id="L58">        } catch (Exception e) {</span>
-<span class="nc" id="L59">            LOGGER.error(ERROR_MSG, e);</span>
-<span class="nc" id="L60">            return new ArrayList&lt;&gt;(); // Return an empty list in case of error</span>
+<span class="nc" id="L65">            return callTastyAPI(query);</span>
+<span class="nc" id="L66">        } catch (Exception e) {</span>
+<span class="nc" id="L67">            LOGGER.error(ERROR_MSG, e);</span>
+<span class="nc" id="L68">            return new ArrayList&lt;&gt;(); // Return an empty list in case of error</span>
         }
     }
 
     private List&lt;RecipeResult&gt; callTastyAPI(String query) throws IOException {
-<span class="nc" id="L65">        OkHttpClient client = new OkHttpClient();</span>
-<span class="nc" id="L66">        Request request = new Request.Builder()</span>
-<span class="nc" id="L67">                .url(&quot;https://tasty.p.rapidapi.com/recipes/list?from=0&amp;size=20&amp;q=&quot; + query)</span>
-<span class="nc" id="L68">                .get()</span>
-<span class="nc" id="L69">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X_RAPIDAPI_KEY&quot;))</span>
-<span class="nc" id="L70">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
-<span class="nc" id="L71">                .build();</span>
+<span class="nc" id="L73">        OkHttpClient client = new OkHttpClient();</span>
+<span class="nc" id="L74">        Request request = new Request.Builder()</span>
+<span class="nc" id="L75">                .url(&quot;https://tasty.p.rapidapi.com/recipes/list?from=0&amp;size=20&amp;q=&quot; + query)</span>
+<span class="nc" id="L76">                .get()</span>
+<span class="nc" id="L77">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X_RAPIDAPI_KEY&quot;))</span>
+<span class="nc" id="L78">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
+<span class="nc" id="L79">                .build();</span>
 
-<span class="nc" id="L73">        try (Response response = client.newCall(request).execute()) {</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (response.isSuccessful()) {</span>
-<span class="nc" id="L75">                String responseBody = response.body().string();</span>
+<span class="nc" id="L81">        try (Response response = client.newCall(request).execute()) {</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">            if (response.isSuccessful()) {</span>
+<span class="nc" id="L83">                String responseBody = response.body().string();</span>
 
-<span class="nc" id="L77">                ObjectMapper objectMapper = new ObjectMapper();</span>
-<span class="nc" id="L78">                RecipeListResponse listResponse = objectMapper.readValue(responseBody, RecipeListResponse.class);</span>
+<span class="nc" id="L85">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="nc" id="L86">                RecipeListResponse listResponse = objectMapper.readValue(responseBody, RecipeListResponse.class);</span>
 
-<span class="nc" id="L80">                return listResponse.getResults();</span>
+<span class="nc" id="L88">                return listResponse.getResults();</span>
             } else {
-<span class="nc" id="L82">                throw new IOException(&quot;Failed to fetch data. Response code: &quot; + response.code());</span>
+<span class="nc" id="L90">                throw new IOException(&quot;Failed to fetch data. Response code: &quot; + response.code());</span>
             }
         }
     }
@@ -88,71 +96,71 @@ import java.util.Map;
 
 
     private String renderTemplate(List&lt;RecipeResult&gt; recipes) {
-<span class="nc" id="L91">        Jinjava jinjava = new Jinjava();</span>
+<span class="nc" id="L99">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="nc" id="L93">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L94">        context.put(&quot;recipes&quot;, recipes);</span>
+<span class="nc" id="L101">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L102">        context.put(&quot;recipes&quot;, recipes);</span>
 
-<span class="nc" id="L96">        String template = &quot;&quot;;</span>
+<span class="nc" id="L104">        String template = &quot;&quot;;</span>
         try {
-<span class="nc" id="L98">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipes.html&quot;)), StandardCharsets.UTF_8);</span>
-<span class="nc" id="L99">        } catch (IOException e) {</span>
-<span class="nc" id="L100">            LOGGER.error(ERROR_MSG, e);</span>
-<span class="nc" id="L101">            return ERROR_MSG;</span>
-<span class="nc" id="L102">        }</span>
+<span class="nc" id="L106">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipes.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L107">        } catch (IOException e) {</span>
+<span class="nc" id="L108">            LOGGER.error(ERROR_MSG, e);</span>
+<span class="nc" id="L109">            return ERROR_MSG;</span>
+<span class="nc" id="L110">        }</span>
 
 
-<span class="nc" id="L105">        return jinjava.render(template, context);</span>
+<span class="nc" id="L113">        return jinjava.render(template, context);</span>
     }
 
 
     @GetMapping(&quot;/recipeDetails&quot;)
     @ResponseBody
     public String displayRecipeDetails(@RequestParam Integer id) {
-<span class="nc" id="L112">        Root recipeDetail = fetchRecipeDetails(id);</span>
-<span class="nc" id="L113">        return renderRecipeDetailTemplate(recipeDetail);</span>
+<span class="nc" id="L120">        Root recipeDetail = fetchRecipeDetails(id);</span>
+<span class="nc" id="L121">        return renderRecipeDetailTemplate(recipeDetail);</span>
     }
 
     private Root fetchRecipeDetails(Integer id) {
-<span class="nc" id="L117">        OkHttpClient client = new OkHttpClient();</span>
-<span class="nc" id="L118">        Request request = new Request.Builder()</span>
-<span class="nc" id="L119">                .url(&quot;https://tasty.p.rapidapi.com/recipes/get-more-info?id=&quot; + id)</span>
-<span class="nc" id="L120">                .get()</span>
-<span class="nc" id="L121">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X_RAPIDAPI_KEY&quot;))</span>
-<span class="nc" id="L122">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
-<span class="nc" id="L123">                .build();</span>
+<span class="nc" id="L125">        OkHttpClient client = new OkHttpClient();</span>
+<span class="nc" id="L126">        Request request = new Request.Builder()</span>
+<span class="nc" id="L127">                .url(&quot;https://tasty.p.rapidapi.com/recipes/get-more-info?id=&quot; + id)</span>
+<span class="nc" id="L128">                .get()</span>
+<span class="nc" id="L129">                .addHeader(&quot;X-RapidAPI-Key&quot;, System.getenv(&quot;X_RAPIDAPI_KEY&quot;))</span>
+<span class="nc" id="L130">                .addHeader(&quot;X-RapidAPI-Host&quot;, &quot;tasty.p.rapidapi.com&quot;)</span>
+<span class="nc" id="L131">                .build();</span>
 
-<span class="nc" id="L125">        try (Response response = client.newCall(request).execute()) {</span>
-<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (response.isSuccessful()) {</span>
-<span class="nc" id="L127">                String responseBody = response.body().string();</span>
-<span class="nc" id="L128">                ObjectMapper objectMapper = new ObjectMapper();</span>
-<span class="nc" id="L129">                return objectMapper.readValue(responseBody, Root.class);</span>
+<span class="nc" id="L133">        try (Response response = client.newCall(request).execute()) {</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            if (response.isSuccessful()) {</span>
+<span class="nc" id="L135">                String responseBody = response.body().string();</span>
+<span class="nc" id="L136">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="nc" id="L137">                return objectMapper.readValue(responseBody, Root.class);</span>
             } else {
-<span class="nc" id="L131">                throw new IOException(&quot;Failed to fetch data. Response code: &quot; + response.code());</span>
+<span class="nc" id="L139">                throw new IOException(&quot;Failed to fetch data. Response code: &quot; + response.code());</span>
             }
-<span class="nc" id="L133">        } catch (IOException e) {</span>
-<span class="nc" id="L134">            LOGGER.error(&quot;Error fetching the recipe details page&quot;, e);</span>
-<span class="nc" id="L135">            return null; // Handle this appropriately</span>
+<span class="nc" id="L141">        } catch (IOException e) {</span>
+<span class="nc" id="L142">            LOGGER.error(&quot;Error fetching the recipe details page&quot;, e);</span>
+<span class="nc" id="L143">            return null; // Handle this appropriately</span>
         }
     }
 
     private String renderRecipeDetailTemplate(Root recipeDetail) {
 
-<span class="nc" id="L141">        Jinjava jinjava = new Jinjava();</span>
+<span class="nc" id="L149">        Jinjava jinjava = new Jinjava();</span>
 
-<span class="nc" id="L143">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L144">        context.put(&quot;recipe&quot;, recipeDetail);</span>
+<span class="nc" id="L151">        Map&lt;String, Object&gt; context = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L152">        context.put(&quot;recipe&quot;, recipeDetail);</span>
 
-<span class="nc" id="L146">        String template = &quot;&quot;;</span>
+<span class="nc" id="L154">        String template = &quot;&quot;;</span>
         try {
 
-<span class="nc" id="L149">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipeDetail.html&quot;)), StandardCharsets.UTF_8);</span>
-<span class="nc" id="L150">        } catch (IOException e) {</span>
-<span class="nc" id="L151">            LOGGER.error(ERROR_MSG, e);</span>
-<span class="nc" id="L152">            return ERROR_MSG;</span>
-<span class="nc" id="L153">        }</span>
+<span class="nc" id="L157">            template = new String(Files.readAllBytes(Paths.get(&quot;src/main/resources/templates/recipeDetail.html&quot;)), StandardCharsets.UTF_8);</span>
+<span class="nc" id="L158">        } catch (IOException e) {</span>
+<span class="nc" id="L159">            LOGGER.error(ERROR_MSG, e);</span>
+<span class="nc" id="L160">            return ERROR_MSG;</span>
+<span class="nc" id="L161">        }</span>
 
-<span class="nc" id="L155">        return jinjava.render(template, context);</span>
+<span class="nc" id="L163">        return jinjava.render(template, context);</span>
     }
 
 

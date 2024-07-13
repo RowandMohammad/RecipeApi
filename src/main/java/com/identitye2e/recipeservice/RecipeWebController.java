@@ -29,6 +29,14 @@ public class RecipeWebController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);
     private static final String ERROR_MSG = "Error occurred while reading template";
 
+    protected OkHttpClient getHttpClient() {
+        return new OkHttpClient();
+    }
+
+    protected String readFileContent(String path) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+    }
+
 
 
 
