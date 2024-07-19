@@ -4,8 +4,8 @@ recipe-service,com.identitye2e.recipeservice,RecipeResult,0,39,0,0,0,14,0,10,0,1
 recipe-service,com.identitye2e.recipeservice,Nutrition,0,59,0,0,0,20,0,14,0,14
 recipe-service,com.identitye2e.recipeservice,RecipeListResponse,0,23,0,0,0,8,0,6,0,6
 recipe-service,com.identitye2e.recipeservice,Instruction,0,52,0,4,0,13,0,12,0,10
-recipe-service,com.identitye2e.recipeservice,RecipeServiceApplication,8,0,0,0,3,0,2,0,2,0
-recipe-service,com.identitye2e.recipeservice,RecipeWebController,255,0,4,0,66,0,14,0,12,0
+recipe-service,com.identitye2e.recipeservice,RecipeServiceApplication,5,3,0,0,2,1,1,1,1,1
+recipe-service,com.identitye2e.recipeservice,RecipeWebController,65,190,2,2,19,47,4,10,2,10
 recipe-service,com.identitye2e.recipeservice,Unit,0,31,0,0,0,13,0,9,0,9
 recipe-service,com.identitye2e.recipeservice,Root,0,75,0,0,0,26,0,18,0,18
 recipe-service,com.identitye2e.recipeservice,Ingredient,0,24,0,0,0,10,0,7,0,7
