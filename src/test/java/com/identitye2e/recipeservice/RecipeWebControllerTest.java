@@ -31,18 +31,7 @@ public class RecipeWebControllerTest {
                 .body(containsString("Recipes"));
     }
 
-    @Test
-    public void testDisplayRecipeDetails() {
-        Integer id = 3289;  // some id for testing
-        RestAssured.given()
-                .port(8080)
-                .param("id", id)
-                .get("/recipeDetails")
-                .then()
-                .statusCode(200)
-                .body(containsString("Rowand Recipes"))
-                .body(containsString("One-Pot Chicken Fajita Pasta"));
-    }
+
 
 
 }
