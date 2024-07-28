@@ -1,6 +1,7 @@
 package com.identitye2e.recipeservice;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -37,11 +38,13 @@ public class RecipeWebControllerTest {
         RestAssured.given()
                 .port(8080)
                 .param("id", id)
+                .contentType(ContentType.JSON)  // Define the content type as JSON
                 .get("/recipeDetails")
                 .then()
                 .statusCode(200)
                 .body(containsString("Rowand Recipes"));
     }
+
 
 
 }
