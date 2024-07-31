@@ -16,41 +16,41 @@ import com.fasterxml.jackson.annotation.JsonProperty;
     public int endTime;
 
     public String getDisplayText() {
-<span class="nc" id="L19">        return displayText;</span>
+<span class="fc" id="L19">        return displayText;</span>
     }
 
     public void setDisplayText(String displayText) {
-<span class="nc" id="L23">        this.displayText = displayText;</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L23">        this.displayText = displayText;</span>
+<span class="fc" id="L24">    }</span>
 
     public int getStartTime() {
-<span class="nc" id="L27">        return startTime;</span>
+<span class="fc" id="L27">        return startTime;</span>
     }
 
     public void setStartTime(int startTime) {
-<span class="nc" id="L31">        this.startTime = startTime;</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L31">        this.startTime = startTime;</span>
+<span class="fc" id="L32">    }</span>
 
     public int getEndTime() {
-<span class="nc" id="L35">        return endTime;</span>
+<span class="fc" id="L35">        return endTime;</span>
     }
 
     public void setEndTime(int endTime) {
-<span class="nc" id="L39">        this.endTime = endTime;</span>
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L39">        this.endTime = endTime;</span>
+<span class="fc" id="L40">    }</span>
 
     public boolean shouldDisplayDuration() {
-<span class="nc bnc" id="L43" title="All 4 branches missed.">        return startTime != 0 &amp;&amp; endTime != 0;</span>
+<span class="fc bfc" id="L43" title="All 4 branches covered.">        return startTime != 0 &amp;&amp; endTime != 0;</span>
     }
 
     public int getDurationInMinutes() {
-<span class="nc" id="L47">        return Math.round((float)(endTime - startTime) / 6000);</span>
+<span class="fc" id="L47">        return Math.round((float)(endTime - startTime) / 6000);</span>
     }
 
 
     @Override
     public String toString() {
-<span class="nc" id="L53">        return &quot;Instruction{&quot; +</span>
+<span class="fc" id="L53">        return &quot;Instruction{&quot; +</span>
                 &quot;displayText='&quot; + displayText + '\'' +
                 &quot;, startTime=&quot; + startTime +
                 &quot;, endTime=&quot; + endTime +

@@ -1,11 +1,13 @@
+stepdefs\RecipeServiceSteps.class
+com\identitye2e\recipeservice\RecipeWebControllerTest.class
+com\identitye2e\recipeservice\UnitTest.class
+com\identitye2e\recipeservice\NutritionTest.class
+com\identitye2e\recipeservice\RecipeListResponseTest.class
 com\identitye2e\recipeservice\InstructionTest.class
 com\identitye2e\recipeservice\RecipeResultTest.class
 com\identitye2e\recipeservice\ComponentTest.class
 com\identitye2e\recipeservice\IngredientTest.class
-com\identitye2e\recipeservice\RecipeWebControllerTest.class
-com\identitye2e\recipeservice\UnitTest.class
 com\identitye2e\recipeservice\RootTest.class
-com\identitye2e\recipeservice\NutritionTest.class
-com\identitye2e\recipeservice\RecipeListResponseTest.class
+runners\CucumberRunner.class
 com\identitye2e\recipeservice\MeasurementTest.class
 com\identitye2e\recipeservice\SectionTest.class

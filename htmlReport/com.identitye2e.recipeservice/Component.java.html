@@ -3,21 +3,21 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 <span class="fc" id="L9">public class Component {</span>
     @JsonProperty(&quot;measurements&quot;)
-    public ArrayList&lt;Measurement&gt; measurements;
+    public List&lt;Measurement&gt; measurements;
 
     @JsonProperty(&quot;ingredient&quot;)
     public Ingredient ingredient;
 
-    public ArrayList&lt;Measurement&gt; getMeasurements() {
+    public List&lt;Measurement&gt; getMeasurements() {
 <span class="fc" id="L17">        return measurements;</span>
     }
 
-    public void setMeasurements(ArrayList&lt;Measurement&gt; measurements) {
+    public void setMeasurements(List&lt;Measurement&gt; measurements) {
 <span class="fc" id="L21">        this.measurements = measurements;</span>
 <span class="fc" id="L22">    }</span>
 

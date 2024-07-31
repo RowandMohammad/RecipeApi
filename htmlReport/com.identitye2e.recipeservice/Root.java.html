@@ -3,7 +3,7 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -44,19 +44,19 @@ import java.util.ArrayList;
 <span class="fc" id="L44">        this.description = description;</span>
 <span class="fc" id="L45">    }</span>
 
-    public ArrayList&lt;Section&gt; getSections() {
+    public List&lt;Section&gt; getSections() {
 <span class="fc" id="L48">        return sections;</span>
     }
 
-    public void setSections(ArrayList&lt;Section&gt; sections) {
+    public void setSections(List&lt;Section&gt; sections) {
 <span class="fc" id="L52">        this.sections = sections;</span>
 <span class="fc" id="L53">    }</span>
 
-    public ArrayList&lt;Instruction&gt; getInstructions() {
+    public List&lt;Instruction&gt; getInstructions() {
 <span class="fc" id="L56">        return instructions;</span>
     }
 
-    public void setInstructions(ArrayList&lt;Instruction&gt; instructions) {
+    public void setInstructions(List&lt;Instruction&gt; instructions) {
 <span class="fc" id="L60">        this.instructions = instructions;</span>
 <span class="fc" id="L61">    }</span>
 
@@ -86,10 +86,10 @@ import java.util.ArrayList;
     public String description;
 
     @JsonProperty(&quot;sections&quot;)
-    public ArrayList&lt;Section&gt; sections;
+    public List&lt;Section&gt; sections;
 
     @JsonProperty(&quot;instructions&quot;)
-    public ArrayList&lt;Instruction&gt; instructions;
+    public List&lt;Instruction&gt; instructions;
 
     @JsonProperty(&quot;num_servings&quot;)
     public int numServings;
