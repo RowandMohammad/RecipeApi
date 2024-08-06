@@ -57,4 +57,16 @@ class RecipeWebControllerTest {
         assertTrue(renderedHtml.contains("<h1>Recipe Search</h1>"));
     }
 
+
+    @Test
+    void testDisplayRecipes() {
+        String htmlResponse = controller.displayRecipes("chicken");
+        assertTrue(htmlResponse.contains("Rowand Recipes"));
+    }
+
+
+
+
+
+
 }

@@ -63,7 +63,7 @@ public class RecipeWebController {
             return callTastyAPI(query);
         } catch (Exception e) {
             LOGGER.error(ERROR_MSG, e);
-            return new ArrayList<>(); // Return an empty list in case of error
+            return new ArrayList<>();
         }
     }
 
