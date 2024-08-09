@@ -1,6 +1,5 @@
 package com.identitye2e.recipeservice;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hubspot.jinjava.Jinjava;
 import okhttp3.OkHttpClient;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class RecipeWebController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeWebController.class);
@@ -29,14 +27,6 @@ public class RecipeWebController {
 
     @Autowired
     FileService fileService;
-
-    protected OkHttpClient getHttpClient() {
-        return new OkHttpClient();
-    }
-
-
-
-
 
     @GetMapping("/")
     @ResponseBody
@@ -56,12 +46,10 @@ public class RecipeWebController {
         return renderTemplate(recipes);
     }
 
-
-
     List<RecipeResult> fetchAndRenderRecipes(String query) {
         try {
             return callTastyAPI(query);
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.error(ERROR_MSG, e);
             return new ArrayList<>();
         }
@@ -77,45 +65,36 @@ public class RecipeWebController {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
+            if (response.isSuccessful() && response.body() != null) {
                 String responseBody = response.body().string();
-
-                ObjectMapper objectMapper = new ObjectMapper();
-                RecipeListResponse listResponse = objectMapper.readValue(responseBody, RecipeListResponse.class);
-
-                return listResponse.getResults();
+                return new ObjectMapper().readValue(responseBody, RecipeListResponse.class).getResults();
             } else {
                 throw new IOException("Failed to fetch data. Response code: " + response.code());
             }
         }
     }
 
-
-
-
     String renderTemplate(List<RecipeResult> recipes) {
         Jinjava jinjava = new Jinjava();
-
         Map<String, Object> context = new HashMap<>();
         context.put("recipes", recipes);
 
-        String template = "";
         try {
-            template = fileService.readFileContent("src/main/resources/templates/recipes.html");
+            String template = fileService.readFileContent("src/main/resources/templates/recipes.html");
+            return jinjava.render(template, context);
         } catch (IOException e) {
             LOGGER.error(ERROR_MSG, e);
             return ERROR_MSG;
         }
-
-
-        return jinjava.render(template, context);
     }
-
 
     @GetMapping("/recipeDetails")
     @ResponseBody
     public String displayRecipeDetails(@RequestParam Integer id) {
         Root recipeDetail = fetchRecipeDetails(id);
+        if(recipeDetail == null) {
+            return ERROR_MSG;
+        }
         return renderRecipeDetailTemplate(recipeDetail);
     }
 
@@ -129,10 +108,9 @@ public class RecipeWebController {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
+            if (response.isSuccessful() && response.body() != null) {
                 String responseBody = response.body().string();
-                ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.readValue(responseBody, Root.class);
+                return new ObjectMapper().readValue(responseBody, Root.class);
             } else {
                 throw new IOException("Failed to fetch data. Response code: " + response.code());
             }
@@ -143,25 +121,16 @@ public class RecipeWebController {
     }
 
     String renderRecipeDetailTemplate(Root recipeDetail) {
-
         Jinjava jinjava = new Jinjava();
-
         Map<String, Object> context = new HashMap<>();
         context.put("recipe", recipeDetail);
 
-        String template = "";
         try {
-
-            template = fileService.readFileContent("src/main/resources/templates/recipeDetail.html");
+            String template = fileService.readFileContent("src/main/resources/templates/recipeDetail.html");
+            return jinjava.render(template, context);
         } catch (IOException e) {
             LOGGER.error(ERROR_MSG, e);
             return ERROR_MSG;
         }
-
-        return jinjava.render(template, context);
     }
-
-
-
-
 }

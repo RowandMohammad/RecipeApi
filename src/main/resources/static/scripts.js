@@ -1,35 +1,29 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
+<!DOCTYPE html>
+<html>
 
-    const nutritionDiv = document.querySelector('.nutrition');
-    nutritionDiv.style.transition = "opacity 0.3s ease";
+<head>
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure to update the path -->
+    <script src="scripts.js" defer></script>
+</head>
 
-    const toggleButton = document.createElement('button');
-    toggleButton.textContent = "Toggle Nutrition Info";
-    toggleButton.classList.add('toggleButton');
+<body>
+<div class="bg-slideshow">
+    <div class="bg-image"></div>
+    <div class="bg-image"></div>
+    <div class="bg-image"></div>
+</div>
+<div class="container">
+    <h1>Recipe Search</h1>
+    <div class="search-container">
+        <form action="/displayRecipes" method="get" onsubmit="return validateQuery()">
+            <label for="query">Search for recipes:</label><br>
+            <input type="text" id="query" name="query" placeholder="Search for recipes..."><br>
+            <span id="error-msg" style="color: red; display: none;">Please enter a valid query.</span><br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
+</body>
 
-
-
-    toggleButton.addEventListener('click', () => {
-        if (nutritionDiv.style.opacity !== '0') {
-            nutritionDiv.style.opacity = '0';
-            setTimeout(() => {
-                nutritionDiv.style.display = 'none';
-            }, 300);
-            toggleButton.textContent = "Show Nutrition Info";
-        } else {
-            nutritionDiv.style.display = 'block';
-            setTimeout(() => {
-                nutritionDiv.style.opacity = '1';
-            }, 10);
-            toggleButton.textContent = "Hide Nutrition Info";
-        }
-    });
-
-    document.querySelector('.container').appendChild(toggleButton);
-});
-
-function goBack() {
-    window.history.back();
-}
-
+</html>
