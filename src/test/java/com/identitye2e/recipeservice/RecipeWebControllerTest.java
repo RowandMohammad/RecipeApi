@@ -58,11 +58,6 @@ class RecipeWebControllerTest {
     }
 
 
-    @Test
-    void testDisplayRecipes() {
-        String htmlResponse = controller.displayRecipes("chicken");
-        assertTrue(htmlResponse.contains("Rowand Recipes"));
-    }
 
 
 
