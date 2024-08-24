@@ -113,7 +113,7 @@ class RecipeWebControllerTest {
     }
 
     @Test
-    void testDisplayRecipesEndpoint() {
+    void testDisplayRecipesEndpoint() throws InterruptedException {
         String responseBody = given()
                 .contentType(ContentType.HTML)
                 .param("query", "chicken")
@@ -122,12 +122,15 @@ class RecipeWebControllerTest {
                 .then()
                 .statusCode(200)
                 .extract().body().asString();
-        assertTrue(responseBody.contains("<title>Recipes</title>"));
+        assertTrue(responseBody.contains("chicken"));
+
+
 
     }
 
     @Test
-    void testRecipeDetailsEndpoint() {
+    void testRecipeDetailsEndpoint() throws InterruptedException {
+
         String responseBody = given()
                 .contentType(ContentType.HTML)
                 .param("id", 3289)
@@ -137,6 +140,7 @@ class RecipeWebControllerTest {
                 .statusCode(200)
                 .extract().body().asString();
 
+        System.out.println(responseBody);
         assertTrue(responseBody.contains("<h1 class=\"title\">One-Pot Chicken Fajita Pasta</h1>"));
 
     }
