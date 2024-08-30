@@ -140,7 +140,6 @@ class RecipeWebControllerTest {
                 .statusCode(200)
                 .extract().body().asString();
 
-        System.out.println(responseBody);
         assertTrue(responseBody.contains("<h1 class=\"title\">One-Pot Chicken Fajita Pasta</h1>"));
 
     }
